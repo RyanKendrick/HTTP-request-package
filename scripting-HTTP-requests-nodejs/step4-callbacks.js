@@ -1,13 +1,12 @@
 var https = require('https');
 
-// requestOptions needs to be outside of function
 var requestOptions = {
   host: 'sytantris.github.io',
-  path: '/http-examples/step3.html'
+  path: '/http-examples/step4.html'
 };
 
 // function takes 'options as a paramter'
-function getAndPrintHTML (options) {
+function getHTML (options, callback) {
 
 
 
@@ -31,11 +30,20 @@ function getAndPrintHTML (options) {
       // (the `end` of the stream)
       response.on('end', function() {
         console.log('Response stream complete.');
-        console.log(dataString);
+        // invoked callback function and take dataString as argument;
+        callback(dataString);
       });
+
 
 });
 
 }
+
+function printHTML (html) {
+  console.log(html);
+}
 // function is called with requestOptions as parameter
-getAndPrintHTML(requestOptions);
+getHTML(requestOptions, printHTML);
+
+
+
