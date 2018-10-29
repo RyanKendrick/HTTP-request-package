@@ -19,15 +19,15 @@ https.get(requestOptions, function (response) {
 
   // the callback is invoked when a `data` chunk is received
   response.on('data', function (data) {
-    console.log('Chunk Received. Data:', data.length);
-    // automatically console to new line (no need for '/n')
-    console.log(dataString += data);
+    dataString += data;
+
   });
 
   // the callback is invoked when all of the data has been received
   // (the `end` of the stream)
   response.on('end', function() {
     console.log('Response stream complete.');
+    console.log(dataString);
   });
 
 });
